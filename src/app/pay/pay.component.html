@@ -1,0 +1,21 @@
+<h1>pay works!</h1>
+<form (ngSubmit)="adressFormSubmit()" [formGroup]="adressForm" class="container p-2">
+  <div>
+    <label for="">Details:</label>
+    <input formControlName="details" type="form-control" class="form-control">
+  </div>
+
+
+  <div>
+    <label for="">phone:</label>
+    <input formControlName="phone" type="form-control" class="form-control">
+  </div>
+
+  <div>
+    <label for="">city:</label>
+    <input formControlName="city" type="form-control" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-success mt-2">Pay</button>
+
+</form>

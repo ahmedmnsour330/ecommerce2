@@ -1,0 +1,152 @@
+
+
+<div class="w-75 my-5 mx-auto">
+  <h2 class="text-success">login now:</h2>
+  <h1 *ngIf="errMessage" class="alert alert-danger">{{errMessage}}</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="loginsubmitMethod()" >
+  <div class="mb-3">
+    <label for="">Email:</label>
+    <input formControlName="email" class="form-control">
+    <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger">
+      <p *ngIf="loginForm.get('email')?.errors?.['required']">email is reuired</p>
+      <p *ngIf="loginForm.get('email')?.errors?.['email']">please enter valid email </p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="">Password:</label>
+    <input  type="password"formControlName="password" class="form-control">
+    <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger">
+      <p *ngIf="loginForm.get('password')?.errors?.['required']">password is reuired</p>
+      <p *ngIf="loginForm.get('password')?.errors?.['pattern']">please enter valid password </p>
+    </div>
+  </div>
+<h2></h2>
+<div class="d-flex justify-content-end">
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-link fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  forget password
+</button>
+  <button [disabled]="loginForm.invalid" class="btn bg-success text-white ">login</button>
+  </div>
+<div >
+
+
+<!-- ************************start loadind************************ -->
+    <div *ngIf="isLoading" class="text-center">
+      <svg height="108px" width="108px" viewBox="0 0 128 128" class="loader">
+        <defs>
+          <clipPath id="loader-eyes">
+            <circle transform="rotate(-40,64,64) translate(0,-56)" r="8" cy="64" cx="64" class="loader__eye1"></circle>
+            <circle transform="rotate(40,64,64) translate(0,-56)" r="8" cy="64" cx="64" class="loader__eye2"></circle>
+          </clipPath>
+          <linearGradient y2="1" x2="0" y1="0" x1="0" id="loader-grad">
+            <stop stop-color="#000" offset="0%"></stop>
+            <stop stop-color="#fff" offset="100%"></stop>
+          </linearGradient>
+          <mask id="loader-mask">
+            <rect fill="url(#loader-grad)" height="128" width="128" y="0" x="0"></rect>
+          </mask>
+        </defs>
+        <g stroke-dasharray="175.93 351.86" stroke-width="12" stroke-linecap="round">
+          <g>
+            <rect clip-path="url(#loader-eyes)" height="64" width="128" fill="hsl(193,90%,50%)"></rect>
+            <g stroke="hsl(193,90%,50%)" fill="none">
+              <circle transform="rotate(180,64,64)" r="56" cy="64" cx="64" class="loader__mouth1"></circle>
+              <circle transform="rotate(0,64,64)" r="56" cy="64" cx="64" class="loader__mouth2"></circle>
+            </g>
+          </g>
+          <g mask="url(#loader-mask)">
+            <rect clip-path="url(#loader-eyes)" height="64" width="128" fill="hsl(223,90%,50%)"></rect>
+            <g stroke="hsl(223,90%,50%)" fill="none">
+              <circle transform="rotate(180,64,64)" r="56" cy="64" cx="64" class="loader__mouth1"></circle>
+              <circle transform="rotate(0,64,64)" r="56" cy="64" cx="64" class="loader__mouth2"></circle>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <!-- *******************end loadind************************ -->
+
+  </div>
+  </form>
+</div>
+
+
+
+
+<!-- forget password All process -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">forget password All process</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- +++++++++++++1forms++++++++++++++++ -->
+
+        <form *ngIf="forgetFlag" [formGroup] ="forgetform" (ngSubmit)="forgetsubmitMethod()">
+
+          <h3 class="text-center text-danger"> forget form</h3>
+        <div class="mb-3">
+          <label for="">Email:</label>
+          <input formControlName="email" class="form-control">
+          <div *ngIf="forgetform.get('email')?.errors && forgetform.get('email')?.touched" class="alert alert-danger">
+            <p *ngIf="forgetform.get('email')?.errors?.['required']">email is reuired</p>
+            <p *ngIf="forgetform.get('email')?.errors?.['email']">please enter valid email </p>
+          </div>
+        </div>
+        <button [disabled]="forgetform.invalid" class="btn bg-success text-white ">forget</button>
+      </form>
+      </div>
+
+
+              <!-- +++++++++++++2forms++++++++++++++++ -->
+
+              <form *ngIf="verifyFlag" [formGroup] ="verifyform" (ngSubmit)="verifysubmitMethod()">
+                <h3 class="text-center text-danger"> verifycode:</h3>
+              <div class="mb-3">
+                <label for="">resetCode:</label>
+                <input formControlName="resetCode" class="form-control">
+                <div *ngIf="verifyform.get('resetCode')?.errors && verifyform.get('resetCode')?.touched" class="alert alert-danger">
+                  <p *ngIf="verifyform.get('resetCode')?.errors?.['required']">reset code is reuired</p>
+                  </div>
+              </div>
+              <button [disabled]="forgetform.invalid" type="submit" class="btn bg-success text-white ">verify</button>
+            </form>
+              <!-- +++++++++++++3forms++++++++++++++++ -->
+
+            <form *ngIf="newPassFlag" [formGroup]="newPasswordform"  (ngSubmit)="newPasssubmitMethod()" >
+              <h3 class="text-center text-danger"> new Password form :</h3>
+              <div class="mb-3">
+                <label for="">Email:</label>
+                <input formControlName="email" class="form-control">
+                <div *ngIf="newPasswordform.get('email')?.errors && newPasswordform.get('email')?.touched" class="alert alert-danger">
+                  <p *ngIf="newPasswordform.get('email')?.errors?.['required']">email is reuired</p>
+                  <p *ngIf="newPasswordform.get('email')?.errors?.['email']">please enter valid email </p>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="">Password:</label>
+                <input  type="password" formControlName="newPassword" class="form-control">
+                <div *ngIf="newPasswordform.get('newPassword')?.errors && newPasswordform.get('newPassword')?.touched" class="alert alert-danger">
+                  <p *ngIf="newPasswordform.get('newPassword')?.errors?.['required']">password is reuired</p>
+                  <p *ngIf="newPasswordform.get('newPassword')?.errors?.['pattern']">please enter valid password </p>
+                </div>
+              </div>
+            <h2></h2>
+
+              <button [disabled]="newPasswordform.invalid" class="btn bg-success text-white ">set New Password </button>
+
+            <div >
+
+
+              </div>
+              </form>
+
+    </div>
+  </div>
+</div>
+
+

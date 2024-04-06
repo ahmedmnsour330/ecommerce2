@@ -1,0 +1,26 @@
+
+
+:root{
+  --main-color:#0aad0a;
+  --light-color:#f0f3f2;
+  --shadow:rgba(145,158,171,.2) 0px 2px 4px -1px ,rgba(145,158,171,.2) 0px 2px 4px -1px;
+  --font-family: sans-serif;
+  --rating-color:#ffc908;
+}
+.text-main
+{
+color: var(--main-color);
+}
+.bg-main{
+  background-color: var(--main-color)!important;
+
+}
+.bg-main-light{
+  background-color: var(--light-color)!important;
+
+}
+
+.cursor{
+  cursor: pointer;
+}
+

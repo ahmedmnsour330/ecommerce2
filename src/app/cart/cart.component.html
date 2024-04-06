@@ -1,0 +1,31 @@
+<button [routerLink]="['/pay',cartTd]" class="btn btn-success d-block ms-auto container">tlb df3</button>
+
+<h1 class="text-center text-info">Total Price {{totalPrice}} </h1>
+
+<div class="container">
+  <div *ngFor="let item of cartItems" class="row align-items-center">
+    <div class="col-md-3">
+      <img class="w-100 " [src]="item.product.imageCover">
+    </div>
+    <div class="col-md-7">
+      <h1 class="h5"> {{item.product.title}} </h1>
+      <span class="text-info fw-bold">{{item.product.category.name}}</span>
+
+      <div class=" md-3">
+        <span> {{item.price}}EGP </span>
+
+  <span> <i class="fa-solid fa-star rating-color"></i> {{item.product.ratingsAverage}} </span>
+      </div>
+
+      <i (click)="removeItemBtn(item.product._id)" class="fa-solid fa-trash text-danger fs-2 cursor"></i>
+
+    </div>
+    <div class="col-md-2">
+      <i (click)="updateItemsQuBtn('plus' ,item.count , item.product._id)" class="fa-solid fa-plus cursor"></i>
+      <input value="{{item.count}}">
+      <i (click)="updateItemsQuBtn('minus' ,item.count , item.product._id)" class="fa-solid fa-minus cursor"></i>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,89 @@
+
+
+<div class="w-75 my-5 mx-auto">
+<h2 class="text-success">register now:</h2>
+<h1 *ngIf="errMessage" class="alert alert-danger">{{errMessage}}</h1>
+<form [formGroup]="registerForm" (ngSubmit)="registersubmitMethod()" >
+<div class="mb-3">
+  <label for="">Name:</label>
+  <input formControlName="name" class="form-control">
+  <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched" class="alert alert-danger ">
+    <p *ngIf="registerForm.get('name')?.errors?.['required']">name is reuired</p>
+    <p *ngIf="registerForm.get('name')?.errors?.['minlength']">name is ahould more than 3 chars </p>
+    <p  *ngIf="registerForm.get('name')?.errors?.['maxlength']">name is ahould less than 8 chars </p>
+  </div>
+</div>
+<div class="mb-3">
+  <label for="">Email:</label>
+  <input formControlName="email" class="form-control">
+  <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert alert-danger">
+    <p *ngIf="registerForm.get('email')?.errors?.['required']">email is reuired</p>
+    <p *ngIf="registerForm.get('email')?.errors?.['email']">please enter valid email </p>
+  </div>
+</div>
+<div class="mb-3">
+  <label for="">Password:</label>
+  <input  type="password"formControlName="password" class="form-control">
+  <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger">
+    <p *ngIf="registerForm.get('password')?.errors?.['required']">password is reuired</p>
+    <p *ngIf="registerForm.get('password')?.errors?.['pattern']">please enter valid password </p>
+  </div>
+</div>
+<div class="mb-3">
+  <label for="">RePassword:</label>
+  <input type="password" formControlName="rePassword" class="form-control">
+  <div *ngIf="registerForm.get('rePssword')?.errors && registerForm.get('rePssword')?.touched" class="alert text-dark-emphasis alert-danger">
+    <p *ngIf="registerForm.get('rePssword')?.errors?.['required']">rePssword is reuired</p>
+    <p *ngIf="registerForm.get('rePssword')?.errors?.['pattern']">please enter valid rePssword </p>
+</div>
+</div>
+<div class="mb-3">
+  <label for="">Phone:</label>
+  <input formControlName="phone" class="form-control">
+  <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched" class="alert alert-danger">
+    <p *ngIf="registerForm.get('phone')?.errors?.['required']">phone is reuired</p>
+    <p *ngIf="registerForm.get('phone')?.errors?.['pattern']">please enter valid phone </p>
+</div>
+</div>
+<button [disabled]="registerForm.invalid" class="btn bg-success text-white d-block ms-auto">register</button>
+<div >
+
+
+  <div *ngIf="isLoading" class="text-center">
+    <svg height="108px" width="108px" viewBox="0 0 128 128" class="loader">
+      <defs>
+        <clipPath id="loader-eyes">
+          <circle transform="rotate(-40,64,64) translate(0,-56)" r="8" cy="64" cx="64" class="loader__eye1"></circle>
+          <circle transform="rotate(40,64,64) translate(0,-56)" r="8" cy="64" cx="64" class="loader__eye2"></circle>
+        </clipPath>
+        <linearGradient y2="1" x2="0" y1="0" x1="0" id="loader-grad">
+          <stop stop-color="#000" offset="0%"></stop>
+          <stop stop-color="#fff" offset="100%"></stop>
+        </linearGradient>
+        <mask id="loader-mask">
+          <rect fill="url(#loader-grad)" height="128" width="128" y="0" x="0"></rect>
+        </mask>
+      </defs>
+      <g stroke-dasharray="175.93 351.86" stroke-width="12" stroke-linecap="round">
+        <g>
+          <rect clip-path="url(#loader-eyes)" height="64" width="128" fill="hsl(193,90%,50%)"></rect>
+          <g stroke="hsl(193,90%,50%)" fill="none">
+            <circle transform="rotate(180,64,64)" r="56" cy="64" cx="64" class="loader__mouth1"></circle>
+            <circle transform="rotate(0,64,64)" r="56" cy="64" cx="64" class="loader__mouth2"></circle>
+          </g>
+        </g>
+        <g mask="url(#loader-mask)">
+          <rect clip-path="url(#loader-eyes)" height="64" width="128" fill="hsl(223,90%,50%)"></rect>
+          <g stroke="hsl(223,90%,50%)" fill="none">
+            <circle transform="rotate(180,64,64)" r="56" cy="64" cx="64" class="loader__mouth1"></circle>
+            <circle transform="rotate(0,64,64)" r="56" cy="64" cx="64" class="loader__mouth2"></circle>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+</div>
+</form>
+</div>
+

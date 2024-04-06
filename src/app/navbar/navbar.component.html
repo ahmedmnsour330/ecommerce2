@@ -1,0 +1,37 @@
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="assets/img/freshcart-logo.svg" ></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav" >
+
+        <a *ngIf="isLogin" class="nav-link" routerLink ="home" routerLinkActive="text-info btn btn-secondary rounded-pill ">Home</a>
+        <a *ngIf="isLogin" class="nav-link" routerLink ="brands" routerLinkActive="text-info btn btn-secondary rounded-pill">Brands</a>
+        <a *ngIf="isLogin" class="nav-link" routerLink ="categories" routerLinkActive="text-info btn btn-secondary rounded-pill">categories</a>
+        <a *ngIf="isLogin" class="nav-link" routerLink ="cart" routerLinkActive="text-info btn btn-secondary rounded-pill">cart</a>
+        <a *ngIf="isLogin" class="nav-link" routerLink ="products" routerLinkActive="text-info btn btn-secondary rounded-pill">products</a>
+
+      </div>
+      <div class="d-flex gap-3 align-items-center">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-behance"></i>
+        <i class="fa-brands fa-linkedin"></i>
+
+        <i routerLink="cart" routerLinkActive="text-info  btn-secondary" class="fa-solid fa-cart-shopping text-secondary cursor position-relative">
+          <span class="position-absolute start-100 bottom-100"> {{cartItemNumbNav}} </span>
+
+        </i>
+        <a *ngIf="!isLogin" class="nav-link" routerLink ="login" routerLinkActive="text-info btn btn-secondary rounded-pill">Login</a>
+        <a *ngIf="!isLogin" class="nav-link" routerLink ="register" routerLinkActive="text-info btn btn-secondary rounded-pill">Register</a>
+        <a *ngIf="isLogin" (click)="logout()"  class="nav-link cursor"  routerLinkActive="text-info btn btn-secondary rounded-pill">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
